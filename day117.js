@@ -5,9 +5,9 @@ const app = express(); // ✅ Correct way to create app
 app.use(express.json()); // ✅ Now this will work
 
 
-const arr = []
+const notes = []
 
-app.post('/notes', (req, res) => {
+app.post('/note', (req, res) => {
     
     console.log(req.body); // ✅ This will show your JSON data
 
@@ -15,7 +15,7 @@ app.post('/notes', (req, res) => {
 
    res.json({
     message:"Notes created",
-    notes:arr     //send notes array format
+    notes:notes    //send notes array format
    })
 });
 
