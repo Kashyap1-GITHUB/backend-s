@@ -1,0 +1,11 @@
+.title{
+    color: black;
+}
+
+.full-song-title{
+    width: 50rem;
+    display: flex;   
+    justify-content: space-between;
+    align-items: center;
+}
+
