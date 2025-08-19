@@ -1,44 +1,44 @@
-import React, { useState } from "react";
-import "../Components/Moodsonges.css"
+// import React, { useState } from "react";
+import { useState } from "react";
+import "../Components/Moodsonges.css";
 
+const Moodsonges = ({ Songs }) => {
+  const [IsPlaying, setIsPlaying] = useState(null);
 
-const Moodsonges = () => {
-
-  const [Songes,setSonges ] = useState([
-    {
-      title: "title-1",
-      artist: "text_ariest1",
-      song: "text_song1",
-    },
-    {
-      title: "title-2",
-      artist: "text_ariest2",
-      song: "text_song2",
-    },
-    {
-      title: "title-3",
-      artist: "text_ariest3",
-      song: "text_song3",
-    },
-    {
-      title: "title-4",
-      artist: "text_ariest4",
-      song: "text_song4",
-    },
-  ]);
+  const handlePlayPause = (index) => {
+    if (IsPlaying === index) {
+      setIsPlaying(null);
+    } else {
+      setIsPlaying(index);
+    }
+  };
 
   return (
     <div className="main">
-        <h2>Recommended songes</h2>
-      {Songes.map((songe, index) => (
-        <div key={index} className="full-song-title" >
+      <h2>Recommended Songs</h2>
+      {Songs.map((song, index) => (
+        <div key={index} className="full-song-title">
           <div className="title">
-            <h2>{songe.title}</h2>
-            <p>{songe.song}</p>
+            <h2>{song.title}</h2>
+            <p>{song.artist}</p>
           </div>
-          <div>
-            <i class="ri-play-circle-fill"></i>
-            <i class="ri-pause-line"></i>
+          <div className="play-pause-button">
+            {IsPlaying === index && (
+              <audio
+                src={song.audio}
+                style={{
+                  display: "none",
+                }}
+                autoPlay={IsPlaying === index}
+              ></audio>
+            )}
+            <button onClick={() => handlePlayPause(index)}>
+              {IsPlaying === index ? (
+                <i className="ri-pause-line"></i>
+              ) : (
+                <i className="ri-play-circle-fill"></i>
+              )}
+            </button>
           </div>
         </div>
       ))}
